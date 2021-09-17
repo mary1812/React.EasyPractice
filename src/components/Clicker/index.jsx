@@ -1,5 +1,5 @@
 import { Component } from 'react';
-
+import './clicker.css'
 class Clicker extends Component {
   constructor(props) {
     super(props);
@@ -20,11 +20,12 @@ class Clicker extends Component {
   render() {
     const { isClick } = this.state;
 
+    const button = <button className = "btn" onClick= {this.amountClicker}> ЖМЯКАЛКА </button>
     return <div>
-      <p>
+      <p className = "clickerText">
        Вы нажали {isClick} раз
       </p>
-      <button onClick= {this.amountClicker}> this is clicker </button>
+      {isClick < 5 ? button : false}
      
     </div>
   }

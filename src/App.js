@@ -6,6 +6,7 @@ import Aloha from "./components/Aloha";
 import Image from "./components/Image";
 import Clicker from "./components/Clicker"
 
+
 function App() {
   return <React.Fragment>
     <Aloha name = "Masha" isGreeting/>
