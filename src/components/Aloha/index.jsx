@@ -2,19 +2,33 @@ import { Component } from 'react';
 // import App from '../../App';
 
 class Aloha extends Component {
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+    isGreeting: true
+    }
+}
+
+  switchState = () => {
+
+    const { isGreeting } = this.state;
+    
+    this.setState({
+      isGreeting: !isGreeting
+    });
+  }
+
   render() {
-    const { name, isGreeting } = this.props;
-
-    // let text;
-    // if (isGreeting) {
-    //   text = 'hello';
-    // }
-    // else {
-    //   text = 'bye';
-    // }
-
-    // const text = isGreeting ? 'HELLO' : 'BYE'; используем переменную один раз, поэтому тернарку пишем сразу в {}
-    return <h1>{isGreeting ? 'HELLO' : 'BYE'} {name}</h1>
+    const { name } = this.props;
+    const {isGreeting } = this.state;
+    
+    return <div>
+      <h1>
+        {isGreeting ? 'HELLO' : 'BYE'} {name}
+      </h1>
+      <button onClick = {this.switchState}>Нажми чтобы поменять состояние</button>
+    </div>
   }
 }
 
