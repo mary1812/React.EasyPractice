@@ -1,19 +1,39 @@
-// import logo from './logo.svg';
-// import './App.css';
-
 import React from "react";
-import Aloha from "./components/Aloha";
-import Image from "./components/Image";
-import Clicker from "./components/Clicker"
+import { Component } from "react";
+import Clicker from "./components/Clicker";
 
+class App extends Component {
+  constructor(props) {
+    super(props);
 
-function App() {
-  return <React.Fragment>
-    <Aloha name = "Masha" isGreeting/>
-    <Aloha name = "Test"/>
-    <Clicker />
-    <Image alt="img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1280px-Image_created_with_a_mobile_phone.png"/>
-  </React.Fragment> 
+    this.state = {
+      step: 1,
+    };
+  }
+
+clickerPlusStep = () =>{
+  this.setState({
+    step: this.state.step +1
+  })
+}
+  
+clickerMinusStep = () =>{
+  this.setState({
+    step: this.state.step -1
+  })
+}
+
+  render() {
+    const { step } = this.state;
+    
+    return <div>
+      <Clicker step={ step}/>
+      <button className="minBtn" onClick={this.clickerMinusStep}> - шаг</button>
+      
+      <button className="plusBtn" onClick={this.clickerPlusStep}> + шаг</button>
+      <p>Значение изменится на: {this.state.step } </p>
+    </div>
+  }
 }
 
 export default App;
