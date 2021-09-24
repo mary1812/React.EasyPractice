@@ -22,6 +22,8 @@ clickerMinusStep = () =>{
     step: this.state.step -1
   })
 }
+  
+ 
 
   render() {
     const { step } = this.state;
