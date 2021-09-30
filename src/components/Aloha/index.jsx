@@ -1,5 +1,5 @@
 import { Component } from 'react';
-// import App from '../../App';
+
 
 class Aloha extends Component {
   constructor(props) {
@@ -30,6 +30,8 @@ class Aloha extends Component {
       <button onClick = {this.switchState}>Нажми чтобы поменять состояние</button>
     </div>
   }
+
 }
+
 
 export default Aloha;
