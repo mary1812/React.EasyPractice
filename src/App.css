@@ -2,6 +2,7 @@
   text-align: center;
 }
 .links{
+  border: 2px solid white;
   text-decoration: none;
   color: #0d665a;
   display: inline-block;
