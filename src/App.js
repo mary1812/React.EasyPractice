@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import HelloUserCard from "./components/HelloUserCard";
 import {UserContext} from "./contexts"
+import StopWatch from "./components/StopWatch";
 
 class App extends Component {
   constructor(props) {
@@ -43,7 +44,8 @@ class App extends Component {
 
         <UserContext.Provider value={this.state.user}>
           <HelloUserCard />
-      </UserContext.Provider>
+        </UserContext.Provider>
+        <StopWatch/>
       </BrowserRouter>
     );
   }
