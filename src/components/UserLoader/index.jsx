@@ -1,21 +1,43 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 
-class UserLoader extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
 
-    }
+function UserLoader () {
+
+  const [users, setUsers] = useState([]);
+  const [isLoad, setLoad] = useState(false);
+  const [err, setErr] = useState(null);
+
+  useEffect(() => {
+    setLoad(true)
+  }, [])
+
+  useEffect(() => {
+    fetch('/users.json')
+  .then((res) => res.json())
+  .then((data) => {
+    setUsers(data);
+    setLoad(false);
+  })
+  .catch((err) => {
+    setErr(err);
+    setLoad(false);
+  });
+  }, [users])
+
+  if (isLoad) {
+    return <div>LOADING ...</div>;
   }
-  
-  render() {
-    return (
-      <div>
-        <h1>USERLIST</h1>
-        
-      </div>
-    );
+
+  if (err) {
+    return <div>{err.message}</div>;
   }
+
+    return ( <ul>
+  {users.map((user) => (
+          <li key={user.id}>{user.name}</li>
+        ))}
+      </ul>
+    ); 
 }
 
 export default UserLoader;
