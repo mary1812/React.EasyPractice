@@ -1,4 +1,4 @@
-import { UserContext } from "../../contexts";
+import { UserContext } from "contexts";
 import { useCallback, useContext, useEffect, useState } from "react";
 
 function HelloUserCard() {
