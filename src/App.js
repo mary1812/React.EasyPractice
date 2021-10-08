@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-import MainPage from "./pages/MainPage";
-import HelloUserCard from "./components/HelloUserCard";
+import MainPage from "pages/MainPage";
+import HelloUserCard from "components/HelloUserCard";
 import {UserContext} from "./contexts"
+import UserLoader from "components/UserLoader";
 
 
 function App(props) {
@@ -16,7 +17,8 @@ function App(props) {
     <BrowserRouter>
         <Route exact path="/" component={MainPage}/>
       <UserContext.Provider value ={[user, setUser]}>
-      <HelloUserCard />
+        <HelloUserCard />
+        <UserLoader/>
            </UserContext.Provider>
     </BrowserRouter>
   )
