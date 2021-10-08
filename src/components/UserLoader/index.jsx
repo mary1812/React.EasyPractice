@@ -8,21 +8,18 @@ function UserLoader () {
   const [err, setErr] = useState(null);
 
   useEffect(() => {
-    setLoad(true)
-  }, [])
-
-  useEffect(() => {
+    setLoad(true);
     fetch('/users.json')
-  .then((res) => res.json())
-  .then((data) => {
-    setUsers(data);
-    setLoad(false);
-  })
-  .catch((err) => {
-    setErr(err);
-    setLoad(false);
-  });
-  }, [users])
+    .then((res) => res.json())
+    .then((data) => {
+      setUsers(data);
+      setLoad(false);
+    })
+    .catch((err) => {
+      setErr(err);
+      setLoad(false);
+    });
+    }, [])
 
   if (isLoad) {
     return <div>LOADING ...</div>;
