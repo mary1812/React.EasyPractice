@@ -1,61 +1,39 @@
-import React, { useState } from "react";
-import * as yup from "yup";
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import React from "react";
 
-const SIGN_IN_SCHEMA = yup.object({
-  email: yup.string().email().required,
-  password: yup
-    .string()
-    .min(8)
-    .max(32)
-    .matches(
-      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,32}$/
-  ).required,
-  remember: yup.string()
-  
-});
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import { SIGN_IN_SCHEMA } from "../../utils/validationSchemas";
+
+const initialState = {
+  email: "",
+  password: "",
+};
 
 function SignInForm(props) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isRemembering, setIsRemembering] = useState(false);
-
-  const handleEmail = ({ target: { value } }) => {
-    setEmail(value);
-  };
-  const handlePassword = ({ target: { value } }) => {
-    setPassword(value);
-  };
-
-  const handleRemember = () => {
-    setIsRemembering(!isRemembering);
+  const submitHandler = (values, formikBag) => {
+    console.log(values);
+    console.log(formikBag);
+    formikBag.resetForm();
   };
 
   return (
-    <form>
-      <input
-        name="email"
-        value={email}
-        onChange={handleEmail}
-        placeholder="email"
-      />
-      <input
-        name="password"
-        value={password}
-        onChange={handlePassword}
-        placeholder="password"
-      />
-      <label>
-        <input
-          type="checkbox"
-          name="remember"
-          value={isRemembering? "remember": ""}
-          checked={isRemembering}
-          onChange={handleRemember}
-        />
-        запомнить
-      </label>
-    </form>
+    <Formik
+      initialValues={initialState}
+      validationSchema={SIGN_IN_SCHEMA}
+      onSubmit={submitHandler}
+    >
+      {(formikProps) => {
+        console.log(formikProps)
+        return (
+          <Form>
+            <Field name="email" placeholder="email" />
+            <ErrorMessage name = "email" />
+            <Field type="text" name="password" placeholder="password" />
+            <ErrorMessage name = "password" />
+            <button type="submit">Login</button>
+          </Form>
+        );
+      }}
+    </Formik>
   );
 }
 
