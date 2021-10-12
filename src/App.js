@@ -5,6 +5,7 @@ import HelloUserCard from "components/HelloUserCard";
 import { UserContext } from "./contexts";
 import UserLoader from "components/UserLoader";
 import Calendar from "components/Calendar";
+import SignInForm from "./components/SignInForm"
 
 function App(props) {
   const [user, setUser] = useState({
@@ -21,6 +22,7 @@ function App(props) {
         <HelloUserCard />
         <UserLoader />
         <Route path="/" component={Calendar} />
+        <SignInForm/>
       </UserContext.Provider>
     </BrowserRouter>
   );
