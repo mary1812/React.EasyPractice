@@ -1,5 +1,5 @@
 import React from "react";
-
+import styles from './SignInForm.css';
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { SIGN_IN_SCHEMA } from "../../utils/validationSchemas";
 
@@ -10,8 +10,6 @@ const initialState = {
 
 function SignInForm(props) {
   const submitHandler = (values, formikBag) => {
-    console.log(values);
-    console.log(formikBag);
     formikBag.resetForm();
   };
 
@@ -24,11 +22,11 @@ function SignInForm(props) {
       {(formikProps) => {
         console.log(formikProps)
         return (
-          <Form>
+          <Form className="container">
             <Field name="email" placeholder="email" />
             <ErrorMessage name = "email" />
             <Field type="text" name="password" placeholder="password" />
-            <ErrorMessage name = "password" />
+            <ErrorMessage name = "password" component='article'/>
             <button type="submit">Login</button>
           </Form>
         );

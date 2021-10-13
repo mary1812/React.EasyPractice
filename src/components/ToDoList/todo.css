@@ -1,0 +1,4 @@
+.ullist{
+  display:flex;
+  flex-direction: column;
+}

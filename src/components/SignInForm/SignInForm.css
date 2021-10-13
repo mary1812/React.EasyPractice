@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+
+  border: 5px solid black;
+  width: 80%;
+  margin: 0 auto;
+  
+
+  @media screen and (max-width: $sm) {
+    background-color: red;
+  }
+}
+
+.correctInput {
+  border: 5px solid green;
+}
+
+.incorrectInput {
+  border: 5px solid red;
+}
