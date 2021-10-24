@@ -1,17 +1,11 @@
 import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import {TODO_SCHEMA} from "../../utils/validationSchemas"
-import styles from "./todo.css"
-const testData = [
-  {
-    id: 1,
-    body: "",
-    status: false,
-  },
-];
 
+import { TODO_SCHEMA } from "../../utils/validationSchemas";
+import styles from "./todo.css";
+var classNames = require('classnames')
 const ToDoList = () => {
-  const [tasks, setTasks] = useState(testData);
+  const [tasks, setTasks] = useState([]);
 
   const addTask = (text) => {
     const newTask = {
@@ -28,25 +22,39 @@ const ToDoList = () => {
     addTask(taskText);
     formikBag.resetForm();
   };
-
+ 
   return (
     <div>
       <h1>ToDo</h1>
-      <Formik validationSchema={TODO_SCHEMA} initialValues={{ taskText: "" }} onSubmit={submitForm}>
+      <Formik
+        validationSchema={TODO_SCHEMA}
+        initialValues={{ taskText: "" }}
+        onSubmit={submitForm}
+      >
         <Form>
           <Field name="taskText" placeholder="add your task" />
+          <button type="submit"> ADD </button>
           <ErrorMessage name="taskText">
-            {(message) => <div style={{color:'red'}}>{message}</div>}
+            {(message) => <div style={{ color: "red" }}>{message}</div>}
           </ErrorMessage>
+          <ul className="ullist">
+            {tasks.map((task) => {
+              const styleList = classNames({"completed": task.status, "generalText": true})
+              return (
+                <label>
+                  <li className={styleList}>
+                    <Field name="taskText" type="checkbox" checked= {task.status} onChange={()=>{
+                      task.status = !task.status
+                      setTasks([...tasks])
+                    }} />
+                    {task.body}
+                  </li>
+                </label>
+              );
+            })}
+          </ul>
         </Form>
       </Formik>
-      <ul className="ullist">
-      
-          {tasks.map((task) => {
-          return   <li> {task.body}</li> ;
-        })}
-      
-      </ul>
     </div>
   );
 };

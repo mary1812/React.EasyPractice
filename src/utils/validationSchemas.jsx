@@ -10,6 +10,6 @@ export const SIGN_IN_SCHEMA = yup.object({
       ).required(),
   });
 
-export const { TODO_SCHEMA } = yup.object({
-  taskText: yup.string().matches(/^(?=.*?[A-Z])(?=.*?[a-z]).{,20}/)
+export const  TODO_SCHEMA = yup.object({
+  taskText: yup.string().matches(/^[^\s].{3,30}$/).required()
 })
