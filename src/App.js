@@ -23,7 +23,7 @@ function App(props) {
       <UserContext.Provider value={[user, setUser]}>
         <HelloUserCard />
         <UserLoader />
-        <Route path="/" component={Calendar} />
+        {/* <Route path="/" component={Calendar} /> */}
         <SignInForm />
         <ToDoList />
       </UserContext.Provider>
